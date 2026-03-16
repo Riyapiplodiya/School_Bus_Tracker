@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>School Bus Tracker Signup</title>
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(120deg,#0f4c81,#f7c948);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.signup-container{
+    background:white;
+    padding:40px;
+    border-radius:10px;
+    width:380px;
+    box-shadow:0px 8px 20px rgba(0,0,0,0.2);
+    text-align:center;
+}
+
+.signup-container h2{
+    margin-bottom:20px;
+    color:#0f4c81;
+}
+
+.input-field{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border-radius:6px;
+    border:1px solid #ccc;
+    font-size:14px;
+}
+
+.input-field:focus{
+    outline:none;
+    border-color:#0f4c81;
+}
+
+.select-field{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+.signup-btn{
+    width:100%;
+    padding:12px;
+    background:#f7c948;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+    transition:0.3s;
+}
+
+.signup-btn:hover{
+    background:#f0b429;
+}
+
+.login-link{
+    margin-top:15px;
+    display:block;
+}
+
+.login-link a{
+    text-decoration:none;
+    color:#0f4c81;
+    font-weight:bold;
+}
+
+.login-link a:hover{
+    text-decoration:underline;
+}
+
+.bus-icon{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="signup-container">
+
+<div class="bus-icon">🚌</div>
+
+<h2>Create Account</h2>
+
+<form method="POST">
+{% csrf_token %}
+
+<input type="text" name="username" placeholder="Enter Username" class="input-field">
+
+<input type="email" name="email" placeholder="Enter Email" class="input-field">
+
+<input type="password" name="password" placeholder="Enter Password" class="input-field">
+
+<input type="text" name="mobile" placeholder="Enter Mobile Number" class="input-field">
+
+<select name="role" class="select-field">
+    <option value="">Select Role</option>
+    <option value="parent">Parent</option>
+    <option value="conductor">Conductor</option>
+    <option value="school">School</option>
+</select>
+
+<button type="submit" class="signup-btn">Signup</button>
+{% if messages %}
+        {% for message in messages %}
+            <p style="color: {% if message.tags == 'error' %}red{% else %}green{% endif %};">
+                {{ message }}
+            </p>
+        {% endfor %}
+    {% endif %}
+
+{% if errors %}
+    {% for error in errors %}
+        <p style="color:red;">{{ error }}</p>
+    {% endfor %}
+{% endif %}
+</form>
+
+<div class="login-link">
+Already have an account?  
+<a href="{% url 'login' %}">Login</a>
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+{% extends "base/dashboard_base.html" %}
+
+{% block content %}
+
+<h2 class="dashboard-title">School Dashboard</h2>
+
+<div class="stats-container">
+
+<div class="stat-card">
+<h2>{{ total_buses }}</h2>
+<p>Total Buses</p>
+</div>
+
+<div class="stat-card">
+<h2>{{ total_students }}</h2>
+<p>Total Students</p>
+</div>
+
+<div class="stat-card">
+<h2>{{ total_drivers }}</h2>
+<p>Total Drivers</p>
+</div>
+
+<div class="stat-card">
+<h2>{{ total_conductors }}</h2>
+<p>Total Conductors</p>
+</div>
+
+</div>
+
+
+<div class="dashboard-grid">
+
+<div class="card">
+<h3>Today's Bus Status</h3>
+
+<table class="bus-table">
+
+<tr>
+<th>Bus</th>
+<th>Driver</th>
+<th>Status</th>
+</tr>
+
+{% for bus in buses %}
+
+<tr>
+<td>{{ bus.bus_number }}</td>
+<td>{{ bus.driver }}</td>
+<td class="status-running">Running</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+
+<div class="card">
+<h3>Recent Activity</h3>
+
+<ul class="activity-list">
+
+<li>Student Aarav boarded bus</li>
+<li>Bus 102 started route</li>
+<li>New conductor added</li>
+
+</ul>
+
+</div>
+
+</div>
+
+{% endblock %}

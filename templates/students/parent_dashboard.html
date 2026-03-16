@@ -1,0 +1,30 @@
+{% extends "base/dashboard_base.html" %}
+
+{% block content %}
+
+<h2>Parent Dashboard</h2>
+
+<div class="card">
+    <h3>Child Bus Status</h3>
+
+    {% if attendance %}
+
+        <p>
+        {{ attendance.student.name }} boarded the bus at
+        {{ attendance.boarded_at|time:"H:i A" }}
+        </p>
+
+    {% else %}
+
+        <p>No attendance marked yet.</p>
+
+    {% endif %}
+
+</div>
+
+<div class="card">
+    <h3>Bus Location</h3>
+    <p>Live tracking will appear here.</p>
+</div>
+
+{% endblock %}

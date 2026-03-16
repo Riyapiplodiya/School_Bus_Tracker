@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>School Bus Tracker</title>
+
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+
+<body>
+     
+    <!-- NAVBAR -->
+    <header class="navbar">
+        
+            <img width="60px"  src="{% static 'images/logo.png' %}">
+            <h2>School Bus Tracker</h2>
+        
+
+        <div class="user-info">
+            Welcome {{ request.user.username }}
+            <a href="{% url 'home' %}">Logout</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            {% if request.user.role == "parent" %}
+            <a href="{% url 'parent_dashboard' %}">Dashboard</a>
+                <a href="#">My Child</a>
+                <a href="#">Bus Tracking</a>
+            {% endif %}
+
+            {% if request.user.role == "conductor" %}
+            <a href="{% url 'conductor_dashboard' %}">Dashboard</a>
+                <a href="{% url 'mark_attendence' %}">Mark Attendance</a>
+                <a href="#">Bus Route</a>
+            {% endif %}
+
+            {% if request.user.role == "school" %}
+            <a href="{% url 'school_dashboard' %}">Dashboard</a>
+                <a href="{% url 'create_bus' %}">Add Bus</a>
+                <a href="{% url 'add_student'%}">Assign Students</a>
+                <a href="{% url 'create_route' %}">Assign Routes</a>
+                <a href="{% url 'create_driver' %}">Add Driver</a> 
+                <a href="{% url 'add_conductor' %}">Add Conductor</a>
+                {% comment %} <a href="{% url 'add_parent' %}">Add Parent</a>              {% endcomment %}
+            {% endif %}
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="content">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+    </div>
+
+</body>
+</html>

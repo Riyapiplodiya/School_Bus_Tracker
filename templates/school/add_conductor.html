@@ -1,0 +1,20 @@
+{% extends "base/dashboard_base.html" %}
+
+{% block content %}
+
+<div class="card">
+
+<h3>Add Conductor</h3>
+
+<form method="POST">
+{% csrf_token %}
+
+{{ form.as_p }}
+
+<button type="submit">Create Conductor</button>
+
+</form>
+
+</div>
+
+{% endblock %}

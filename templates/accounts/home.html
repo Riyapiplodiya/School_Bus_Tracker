@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>School Bus Tracker</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(120deg,#0f4c81,#f7c948);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    text-align:center;
+}
+
+.title{
+    color:white;
+    font-size:32px;
+    margin-bottom:30px;
+}
+
+.card-container{
+    display:flex;
+    gap:30px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    width:180px;
+    border-radius:12px;
+    box-shadow:0px 6px 15px rgba(0,0,0,0.2);
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.icon{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.role-name{
+    font-size:18px;
+    font-weight:bold;
+    color:#0f4c81;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="title">🚌 School Bus Tracker</div>
+
+<div class="card-container">
+
+<a href="{% url 'login' %}?role=parent" style="text-decoration:none;">
+<div class="card">
+<div class="icon">👨‍👩‍👧</div>
+<div class="role-name">Parent</div>
+</div>
+</a>
+
+<a href="{% url 'login' %}?role=conductor" style="text-decoration:none;">
+<div class="card">
+<div class="icon">🧑‍✈️</div>
+<div class="role-name">Conductor</div>
+</div>
+</a>
+
+<a href="{% url 'login' %}?role=school" style="text-decoration:none;">
+<div class="card">
+<div class="icon">🏫</div>
+<div class="role-name">School</div>
+</div>
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

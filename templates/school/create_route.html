@@ -1,0 +1,20 @@
+{% extends "base/dashboard_base.html" %}
+
+{% block content %}
+
+<h2>Create Route</h2>
+
+<div class="card">
+
+<form method="POST">
+{% csrf_token %}
+
+{{ form.as_p }}
+
+<button type="submit">Create Route</button>
+
+</form>
+
+</div>
+
+{% endblock %}
