@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from .models import  Student
 from accounts.models import UserModel
-
+from bus.models import Bus,Route
 
 # Parent Form (for creating parent data)
 # class ParentForm(forms.ModelForm):
@@ -33,9 +33,17 @@ class StudentForm(forms.ModelForm):
 
     class Meta:
         model = Student
-        fields ="__all__"
-        
+        fields = "__all__"
+
     def __init__(self, *args, **kwargs):
+        school = kwargs.pop("school", None)   # 🔥 REMOVE school first
         super().__init__(*args, **kwargs)
 
-        self.fields["parent"].queryset = UserModel.objects.filter(role="parent")
+        if school:
+            # filter dropdowns
+            self.fields["bus"].queryset = Bus.objects.filter(school=school)
+            self.fields["route"].queryset = Route.objects.filter(school=school)
+            self.fields["parent"].queryset = UserModel.objects.filter(
+                role="parent",
+                school=school
+            )

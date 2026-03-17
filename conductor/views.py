@@ -1,15 +1,10 @@
 from django.shortcuts import render
 from students.models import Student
-
-
+from datetime import date
 from attendence.models import Attendance
-
-
 from django.core.mail import send_mail
 from django.conf import settings
 from datetime import datetime
-
-
 
 def mark_attendence(request):
 
@@ -23,24 +18,31 @@ def mark_attendence(request):
 
             status = request.POST.get(str(student.id))
 
-            if status == "present":
+            attendance, created = Attendance.objects.get_or_create(
+                student=student,
+                date=date.today(),
+                defaults={
+                    "conductor": request.user,
+                    "status": status == "present"
+                }
+            )
 
-                attendance = Attendance.objects.create(
-                    student=student,
-                    conductor=request.user,
-                    status=True
-                )
+            # ✅ Update if already exists
+            if not created:
+                attendance.status = (status == "present")
+                attendance.save()
 
-                # get time
+            # ✅ Send email ONLY first time when marked present
+            if created and status == "present":
+
                 time = datetime.now().strftime("%I:%M %p")
 
-                # parent email
                 parent_email = student.parent.email
 
-                # send email
                 send_mail(
                     "Bus Boarding Alert",
-                    f"Hello {student.parent.name},\n\nYour child {student.name} has boarded the bus at {time}.",
+                    f"Hello {student.parent.username},\n\n"
+                    f"Your child {student.name} has boarded the bus at {time}.",
                     settings.EMAIL_HOST_USER,
                     [parent_email],
                     fail_silently=True

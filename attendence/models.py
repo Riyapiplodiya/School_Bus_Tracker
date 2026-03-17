@@ -4,14 +4,14 @@ from django.db import models
 from django.db import models
 from students.models import Student
 from accounts.models import UserModel
-
+from school.models import School
 
 class Attendance(models.Model):
 
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
 
     conductor = models.ForeignKey(UserModel, on_delete=models.CASCADE)
-
+    school = models.ForeignKey(School, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
 
     boarded_at = models.DateTimeField(auto_now_add=True)

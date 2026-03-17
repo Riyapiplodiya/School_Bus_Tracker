@@ -5,58 +5,87 @@
 
 <style>
 
+*{
+    box-sizing:border-box;
+}
+
 body{
     margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(120deg,#0f4c81,#f7c948);
+    font-family:'Segoe UI', Arial, sans-serif;
+    background:#e2e8f0;
     height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
 }
 
+/* CONTAINER */
+
 .container{
     text-align:center;
+    width:100%;
+    max-width:900px;
 }
 
+/* TITLE */
+
 .title{
-    color:white;
-    font-size:32px;
-    margin-bottom:30px;
+    color:#1e293b;
+    font-size:34px;
+    margin-bottom:40px;
+    font-weight:700;
 }
+
+/* CARD CONTAINER */
 
 .card-container{
     display:flex;
+    justify-content:center;
     gap:30px;
+    flex-wrap:wrap;
 }
+
+/* CARD */
 
 .card{
     background:white;
-    padding:30px;
-    width:180px;
-    border-radius:12px;
-    box-shadow:0px 6px 15px rgba(0,0,0,0.2);
+    padding:35px 25px;
+    width:200px;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
     cursor:pointer;
-    transition:0.3s;
+    transition:all 0.3s ease;
+    border:1px solid #cbd5f5;
 }
+
+/* HOVER */
 
 .card:hover{
-    transform:translateY(-5px);
+    transform:translateY(-8px) scale(1.04);
+    box-shadow:0 18px 40px rgba(30,64,175,0.25);
+    border-color:#1e40af;
 }
 
+/* ICON */
+
 .icon{
-    font-size:40px;
-    margin-bottom:10px;
+    font-size:45px;
+    margin-bottom:15px;
 }
+
+/* ROLE NAME */
 
 .role-name{
     font-size:18px;
-    font-weight:bold;
-    color:#0f4c81;
+    font-weight:600;
+    color:#1e40af;
+}
+
+a{
+    text-decoration:none;
 }
 
 </style>
-
 </head>
 
 <body>
@@ -67,25 +96,25 @@ body{
 
 <div class="card-container">
 
-<a href="{% url 'login' %}?role=parent" style="text-decoration:none;">
-<div class="card">
-<div class="icon">👨‍👩‍👧</div>
-<div class="role-name">Parent</div>
-</div>
+<a href="{% url 'login' %}?role=parent">
+    <div class="card">
+        <div class="icon">👨‍👩‍👧</div>
+        <div class="role-name">Parent</div>
+    </div>
 </a>
 
-<a href="{% url 'login' %}?role=conductor" style="text-decoration:none;">
-<div class="card">
-<div class="icon">🧑‍✈️</div>
-<div class="role-name">Conductor</div>
-</div>
+<a href="{% url 'login' %}?role=conductor">
+    <div class="card">
+        <div class="icon">🧑‍✈️</div>
+        <div class="role-name">Conductor</div>
+    </div>
 </a>
 
-<a href="{% url 'login' %}?role=school" style="text-decoration:none;">
-<div class="card">
-<div class="icon">🏫</div>
-<div class="role-name">School</div>
-</div>
+<a href="{% url 'login' %}?role=school">
+    <div class="card">
+        <div class="icon">🏫</div>
+        <div class="role-name">School</div>
+    </div>
 </a>
 
 </div>

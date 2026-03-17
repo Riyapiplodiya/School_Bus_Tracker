@@ -1,7 +1,7 @@
 from django.db import models
 from accounts.models import UserModel
 from bus.models import Bus,Route
-
+from school.models import School
 
 # class Parent(models.Model):
     
@@ -19,6 +19,7 @@ from bus.models import Bus,Route
     
 
 class SchoolClass(models.Model):
+    school=models.ForeignKey(School,on_delete=models.CASCADE,null=True,blank=True)
 
     class_name = models.CharField(max_length=20)
 
@@ -52,6 +53,8 @@ class Student(models.Model):
         null=True,
         blank=True
     )
+    school=models.ForeignKey(School,on_delete=models.CASCADE)
+
 
     route = models.ForeignKey(
         Route,

@@ -8,19 +8,30 @@ class BusForm(forms.ModelForm):
     class Meta:
         model = Bus
         fields = ["bus_number", "driver", "conductor", "capacity"]
+
     def __init__(self, *args, **kwargs):
+        school = kwargs.pop("school", None)   # 🔥 get school
         super().__init__(*args, **kwargs)
 
-        # conductors already assigned to buses
-        assigned_conductors = Bus.objects.values_list("conductor", flat=True)
+        if school:
+            # conductors already assigned in THIS school only
+            assigned_conductors = Bus.objects.filter(
+                school=school
+            ).values_list("conductor", flat=True)
+            # show only available conductors of THIS school
+            self.fields["conductor"].queryset = UserModel.objects.filter(
+                role="conductor",
+                school=school
+            ).exclude(id__in=assigned_conductors)
 
-        # show only conductors with role='conductor' and not assigned
-        self.fields["conductor"].queryset = UserModel.objects.filter(
-            role="conductor"
-        ).exclude(id__in=assigned_conductors)
-        
+            # also filter drivers (VERY IMPORTANT)
+            assigned_drivers = Bus.objects.filter(
+                school=school
+            ).values_list("driver", flat=True)
 
-
+            self.fields["driver"].queryset = Driver.objects.filter(
+                school=school
+            ).exclude(id__in=assigned_drivers)
 
 class RouteForm(forms.ModelForm):
 
@@ -29,20 +40,32 @@ class RouteForm(forms.ModelForm):
         fields = ["route_name", "start_location", "end_location", "bus"]
         
     def __init__(self, *args, **kwargs):
+        school=kwargs.pop("school",None)
         super().__init__(*args, **kwargs)
 
-        assigned_buses = Route.objects.values_list("bus", flat=True)
+        if school:
+            assigned_buses = Route.objects.filter(
+                school=school
+            ).values_list("bus", flat=True)
 
-        self.fields["bus"].queryset = Bus.objects.exclude(
-            id__in=assigned_buses
-        )
+            self.fields["bus"].queryset = Bus.objects.filter(
+                school=school
+            ).exclude(id__in=assigned_buses)
     
 class DriverForm(forms.ModelForm):
-
+    print("driver form==============")
     class Meta:
         model = Driver
-        fields = ["name", "phone", "license_number", "address"]
+        fields = "__all__"
         
+    def __init__(self, *args, **kwargs):
+        print("DriverForm INIT CALLED") 
+        school = kwargs.pop("school", None)   # 🔥 VERY IMPORTANT
+        super().__init__(*args, **kwargs)
+
+        if school:
+                # Example: if driver has relation fields, filter them
+            pass
         
 class ConductorForm(forms.ModelForm):
 

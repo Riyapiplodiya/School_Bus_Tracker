@@ -5,86 +5,119 @@
 
 <style>
 
+*{
+    box-sizing:border-box;
+}
+
+/* BODY */
+
 body{
     margin:0;
-    padding:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(120deg,#0f4c81,#f7c948);
+    font-family:'Segoe UI', Arial, sans-serif;
+    background:#e2e8f0;
     height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
 }
 
+/* LOGIN BOX */
+
 .login-container{
     background:white;
     padding:40px;
-    border-radius:10px;
-    width:350px;
-    box-shadow:0px 8px 20px rgba(0,0,0,0.2);
+    border-radius:16px;
+    width:360px;
+    box-shadow:0 12px 30px rgba(0,0,0,0.12);
     text-align:center;
+    border:1px solid #cbd5f5;
 }
+
+/* ICON */
+
+.bus-icon{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+/* TITLE */
 
 .login-container h2{
     margin-bottom:25px;
-    color:#0f4c81;
+    color:#1e40af;
+    font-weight:600;
 }
+
+/* INPUT */
 
 .input-field{
     width:100%;
-    padding:10px;
-    margin:10px 0;
-    border-radius:6px;
-    border:1px solid #ccc;
+    padding:12px;
+    margin:12px 0;
+    border-radius:8px;
+    border:1px solid #cbd5f5;
     font-size:14px;
+    transition:0.2s;
 }
 
 .input-field:focus{
     outline:none;
-    border-color:#0f4c81;
+    border-color:#1e40af;
+    box-shadow:0 0 0 2px rgba(30,64,175,0.15);
 }
+
+/* BUTTON */
 
 .login-btn{
     width:100%;
     padding:12px;
-    background:#f7c948;
+    background:#1e40af;
+    color:white;
     border:none;
-    border-radius:6px;
+    border-radius:8px;
     font-size:16px;
-    font-weight:bold;
+    font-weight:600;
     cursor:pointer;
     transition:0.3s;
+    margin-top:10px;
 }
 
 .login-btn:hover{
-    background:#f0b429;
+    background:#1d4ed8;
+    box-shadow:0 6px 15px rgba(30,64,175,0.3);
 }
 
+/* ERROR */
+
+.error-msg{
+    color:red;
+    margin-top:10px;
+    font-size:14px;
+}
+
+/* LINKS */
+
 .signup-link{
-    margin-top:15px;
-    display:block;
+    margin-top:18px;
+    font-size:14px;
+    color:#475569;
 }
 
 .signup-link a{
     text-decoration:none;
-    color:#0f4c81;
-    font-weight:bold;
+    color:#1e40af;
+    font-weight:600;
+    margin:0 5px;
 }
 
 .signup-link a:hover{
     text-decoration:underline;
 }
 
-.bus-icon{
-    font-size:40px;
-    margin-bottom:10px;
-}
-
 </style>
 </head>
 
 <body>
-    
 
 <div class="login-container">
 
@@ -101,16 +134,16 @@ body{
 <input type="password" name="password" placeholder="Enter Password" class="input-field">
 
 <button type="submit" class="login-btn">Login</button>
-{% if error %}
-<p style="color:red; margin-top:10px;">{{ error }}</p>
-{% endif %}
 
+{% if error %}
+<p class="error-msg">{{ error }}</p>
+{% endif %}
 
 </form>
 
 <div class="signup-link">
-<a href="{% url 'home' %}">Back</a>
-Don't have an account?  
+<a href="{% url 'home' %}">Back</a> |
+Don't have an account?
 <a href="{% url 'signup' %}">Signup</a>
 </div>
 

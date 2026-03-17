@@ -1,4 +1,3 @@
-
 *{
     margin:0;
     padding:0;
@@ -9,7 +8,7 @@
 /* BODY */
 
 body{
-    background:linear-gradient(135deg,#0f4c81,#3a7bd5,#f7c948);
+    background:#eef2f7;
     min-height:100vh;
 }
 
@@ -21,43 +20,32 @@ body{
     justify-content:space-between;
     align-items:center;
     padding:18px 35px;
-    backdrop-filter:blur(10px);
-    background:rgba(255,255,255,0.15);
-    color:white;
-    box-shadow:0 4px 15px rgba(0,0,0,0.2);
-}
-
-.nav-left{
-    display:flex;
-    align-items:center;
-    gap:10px;
+    background:white;
+    color:#1e293b;
+    box-shadow:0 3px 12px rgba(0,0,0,0.08);
 }
 
 .navbar h2{
-    font-size:24px;
-    letter-spacing:1px;
-}
-
-.user-info{
-    font-size:15px;
+    font-size:22px;
+    font-weight:600;
+    color:#1d4ed8;
 }
 
 .user-info a{
     margin-left:15px;
-    padding:6px 12px;
-    background:white;
-    color:#0f4c81;
+    padding:6px 14px;
+    background:#1d4ed8;
+    color:white;
     border-radius:6px;
     text-decoration:none;
-    font-weight:bold;
+    font-size:14px;
 }
 
 
-/* MAIN LAYOUT */
+/* LAYOUT */
 
 .container{
     display:flex;
-    min-height:calc(100vh - 70px);
 }
 
 
@@ -65,9 +53,11 @@ body{
 
 .sidebar{
     width:230px;
-    padding:30px 20px;
-    background:linear-gradient(180deg,#1c3b6b,#0f4c81);
-    box-shadow:4px 0 15px rgba(0,0,0,0.2);
+    padding:25px 15px;
+    background:#2a5ce4;
+    color:white;
+    font-weight: 800;
+    font-size: 18px;
     min-height:100vh;
 }
 
@@ -79,39 +69,41 @@ body{
     color:white;
     text-decoration:none;
     padding:12px 15px;
-    margin-bottom:12px;
+    margin-bottom:10px;
     border-radius:8px;
-    font-weight:500;
-    transition:all 0.25s ease;
+    transition:0.2s;
 }
 
 .sidebar a:hover{
-    background:rgba(255,255,255,0.2);
-    transform:translateX(5px);
+    background:#dbeafe;
+    color:#1e3a8a;
+}
+
+.sidebar a.active{
+    background:white;
+    color:#1e3a8a;
+    font-weight:600;
 }
 
 
-/* CONTENT AREA */
+/* CONTENT */
 
 .content{
     flex:1;
-    padding:40px;
-    max-width:1100px;
-    margin:0 auto;
-    width:100%;
+    padding:35px;
 }
 
 
-/* DASHBOARD TITLE */
+/* TITLE */
 
 .dashboard-title{
-    font-size:28px;
+    font-size:26px;
     margin-bottom:25px;
     color:#1e293b;
 }
 
 
-/* STAT CARDS */
+/* STATS */
 
 .stats-container{
     display:grid;
@@ -124,28 +116,26 @@ body{
     background:white;
     padding:20px;
     border-radius:12px;
-    box-shadow:0 6px 18px rgba(0,0,0,0.12);
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
     text-align:center;
-    transition:0.3s;
+    transition:0.2s;
 }
 
 .stat-card:hover{
-    transform:translateY(-5px);
+    transform:translateY(-4px);
 }
 
 .stat-card h2{
-    font-size:32px;
-    color:#2563eb;
-    margin-bottom:5px;
+    font-size:30px;
+    color:#1d4ed8;
 }
 
 .stat-card p{
     color:#64748b;
-    font-size:14px;
 }
 
 
-/* DASHBOARD GRID */
+/* GRID */
 
 .dashboard-grid{
     display:grid;
@@ -154,23 +144,18 @@ body{
 }
 
 
-/* CARD STYLE */
+/* CARD */
 
 .card{
+    margin-top: 20px;
     background:white;
-    padding:25px;
-    border-radius:14px;
-    margin-bottom:25px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.12);
-    transition:0.3s;
-}
-
-.card:hover{
-    transform:translateY(-4px);
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 6px 16px rgba(0,0,0,0.08);
 }
 
 .card h3{
-    color:#0f4c81;
+    color:#2053de;
     margin-bottom:10px;
 }
 
@@ -180,19 +165,18 @@ body{
 .bus-table{
     width:100%;
     border-collapse:collapse;
-    margin-top:10px;
 }
 
 .bus-table th{
     background:#f1f5f9;
     padding:12px;
-    text-align:left;
     font-weight:600;
 }
 
 .bus-table td{
+    text-align: center;
     padding:10px;
-    border-bottom:1px solid #eee;
+    border-bottom:1px solid #e2e8f0;
 }
 
 .bus-table tr:hover{
@@ -200,27 +184,25 @@ body{
 }
 
 
-/* STATUS BADGE */
+/* STATUS */
 
 .status-running{
     background:#dcfce7;
-    color:#16a34a;
-    padding:4px 10px;
+    color:#15803d;
+    padding:5px 10px;
     border-radius:6px;
     font-size:13px;
-    font-weight:600;
 }
 
 
-/* ACTIVITY LIST */
+/* ACTIVITY */
 
 .activity-list{
     list-style:none;
-    margin-top:10px;
 }
 
 .activity-list li{
     padding:10px 0;
-    border-bottom:1px solid #eee;
+    border-bottom:1px solid #e2e8f0;
     color:#334155;
 }

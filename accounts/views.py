@@ -46,7 +46,9 @@ def signup_view(request):
             user.save()
             messages.success(request, "Account created successfully")
 
-            return redirect("login")
+            role = request.POST.get("role")
+
+            return redirect(f"/login/?role={role}")
 
         except ValidationError as e:
             print(e)

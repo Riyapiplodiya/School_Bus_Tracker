@@ -1,5 +1,6 @@
 from django.db import models
 from accounts.models import UserModel
+from school.models import School
 
 class Driver(models.Model):
 
@@ -8,6 +9,9 @@ class Driver(models.Model):
     phone = models.CharField(max_length=15)
 
     license_number = models.CharField(max_length=50,unique=True)
+    
+    school=models.ForeignKey(School,on_delete=models.CASCADE)
+
 
     address = models.TextField()
 
@@ -32,6 +36,7 @@ class Bus(models.Model):
         null=True,
         limit_choices_to={"role": "conductor"}
     )
+    school=models.ForeignKey(School,on_delete=models.CASCADE)
 
     capacity = models.IntegerField()
 
@@ -54,6 +59,7 @@ class Route(models.Model):
         on_delete=models.CASCADE,
         related_name="routes"
     )
+    school=models.ForeignKey(School,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.route_name

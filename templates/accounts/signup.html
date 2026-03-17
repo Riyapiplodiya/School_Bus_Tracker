@@ -5,88 +5,119 @@
 
 <style>
 
+*{
+    box-sizing:border-box;
+}
+
+/* BODY */
+
 body{
     margin:0;
-    padding:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(120deg,#0f4c81,#f7c948);
+    font-family:'Segoe UI', Arial, sans-serif;
+    background:#e2e8f0;
     height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
 }
 
+/* CONTAINER */
+
 .signup-container{
     background:white;
     padding:40px;
-    border-radius:10px;
+    border-radius:16px;
     width:380px;
-    box-shadow:0px 8px 20px rgba(0,0,0,0.2);
+    box-shadow:0 12px 30px rgba(0,0,0,0.12);
     text-align:center;
+    border:1px solid #cbd5f5;
 }
+
+/* ICON */
+
+.bus-icon{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+/* TITLE */
 
 .signup-container h2{
     margin-bottom:20px;
-    color:#0f4c81;
+    color:#1e40af;
+    font-weight:600;
 }
 
-.input-field{
+/* INPUT */
+
+.input-field, .select-field{
     width:100%;
-    padding:10px;
-    margin:8px 0;
-    border-radius:6px;
-    border:1px solid #ccc;
+    padding:12px;
+    margin:10px 0;
+    border-radius:8px;
+    border:1px solid #cbd5f5;
     font-size:14px;
+    transition:0.2s;
 }
 
-.input-field:focus{
+.input-field:focus, .select-field:focus{
     outline:none;
-    border-color:#0f4c81;
+    border-color:#1e40af;
+    box-shadow:0 0 0 2px rgba(30,64,175,0.15);
 }
 
-.select-field{
-    width:100%;
-    padding:10px;
-    margin:8px 0;
-    border-radius:6px;
-    border:1px solid #ccc;
-}
+/* BUTTON */
 
 .signup-btn{
     width:100%;
     padding:12px;
-    background:#f7c948;
+    background:#1e40af;
+    color:white;
     border:none;
-    border-radius:6px;
+    border-radius:8px;
     font-size:16px;
-    font-weight:bold;
+    font-weight:600;
     cursor:pointer;
     margin-top:10px;
     transition:0.3s;
 }
 
 .signup-btn:hover{
-    background:#f0b429;
+    background:#1d4ed8;
+    box-shadow:0 6px 15px rgba(30,64,175,0.3);
 }
 
+/* MESSAGES */
+
+.message{
+    margin-top:10px;
+    font-size:14px;
+}
+
+.message.success{
+    color:#16a34a;
+}
+
+.message.error{
+    color:#dc2626;
+}
+
+/* LINKS */
+
 .login-link{
-    margin-top:15px;
-    display:block;
+    margin-top:18px;
+    font-size:14px;
+    color:#475569;
 }
 
 .login-link a{
     text-decoration:none;
-    color:#0f4c81;
-    font-weight:bold;
+    color:#1e40af;
+    font-weight:600;
 }
 
 .login-link a:hover{
     text-decoration:underline;
-}
-
-.bus-icon{
-    font-size:40px;
-    margin-bottom:10px;
 }
 
 </style>
@@ -119,23 +150,27 @@ body{
 </select>
 
 <button type="submit" class="signup-btn">Signup</button>
+
+<!-- DJANGO MESSAGES -->
+
 {% if messages %}
-        {% for message in messages %}
-            <p style="color: {% if message.tags == 'error' %}red{% else %}green{% endif %};">
-                {{ message }}
-            </p>
-        {% endfor %}
-    {% endif %}
+    {% for message in messages %}
+        <p class="message {% if message.tags == 'error' %}error{% else %}success{% endif %}">
+            {{ message }}
+        </p>
+    {% endfor %}
+{% endif %}
 
 {% if errors %}
     {% for error in errors %}
-        <p style="color:red;">{{ error }}</p>
+        <p class="message error">{{ error }}</p>
     {% endfor %}
 {% endif %}
+
 </form>
 
 <div class="login-link">
-Already have an account?  
+Already have an account?
 <a href="{% url 'login' %}">Login</a>
 </div>
 
